@@ -65,7 +65,7 @@ function Login() {
             //   email: values.email,
             //   password: values.password,
             // });
-            handleSubmit({email:values.email, password:values.password});
+            setInputValue({email:values.email, password:values.password});
             // navigate('/home')
           }}
         >
