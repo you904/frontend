@@ -1,18 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Home() {
   const apiUrl = "https://you904.vercel.app/api";
-const [mess ,setMess]= useState('')
-fetch(`${apiUrl}/endpoint`)
-  .then(response => response.json())
-  .then(data => {
-    setMess(data.message); // Set the message from the backend
-    console.log(data);
-  })
-  .catch(error => console.error('Error:', error));
+  
+  const [mess, setMess] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${apiUrl}/endpoint`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setMess(data); // Set the message from the backend
+        console.log(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array means this effect will run once
   return (
-    <div>home {mess}</div>
+    <>
+    {
+mess.map((doc)=>(
+  <div>
+<h1>{doc.name}'s price = {doc.price}</h1>
+
+  </div>
+))
+    }
+    </>
   )
 }
 
