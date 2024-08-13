@@ -19,7 +19,7 @@ function Signup() {
           // Optionally, you can preview the selected image here using FileReader
         };
        
-  
+        
   return (
     <div class="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 px-6 py-8">
     <div class="w-full max-w-md bg-slate-100 rounded-lg shadow-md dark:border dark:border-gray-700">
