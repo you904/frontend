@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Home() {
+  const apiUrl = "https://you904.vercel.app";
+const [mess ,setMess]= useState('')
+fetch(`${apiUrl}/endpoint`)
+  .then(response => response.json())
+  .then(data => {
+    setMess(data.message); // Set the message from the backend
+    console.log(data);
+  })
+  .catch(error => console.error('Error:', error));
+
   return (
-    <div>home</div>
+    <div>home {mess}</div>
   )
 }
 

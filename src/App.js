@@ -6,6 +6,7 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 
 function App() {
+  
   return (
     <Router>
       <Routes>
