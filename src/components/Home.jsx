@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function Home() {
-  const apiUrl = "https://you904.vercel.app";
+  const apiUrl = "https://you904.vercel.app/api";
 const [mess ,setMess]= useState('')
 fetch(`${apiUrl}/endpoint`)
   .then(response => response.json())
