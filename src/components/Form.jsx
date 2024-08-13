@@ -1,16 +1,22 @@
 import React,{useState} from 'react'
 
 function Form() {
-    const [inputValue, setInputValue] = useState("");
+    const [inputname, setInputName] = useState("");
+    const [inputPrice, setInputPrice] = useState("");
 
   const handleSubmit = async (e) => {
+    const data = {name:inputname,
+        price:inputPrice
+    }
     try {
       const response = await fetch('https://you904.vercel.app/api/sendData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data: inputValue }),
+        body: JSON.stringify({name:inputname,
+            price:inputPrice
+        }),
       });
 
       const result = await response.json();
@@ -21,15 +27,20 @@ function Form() {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Enter something"
+          value={inputname}
+          onChange={(e) => setInputName(e.target.value)}
+          placeholder="Enter name of product"
         />
-        <button type="submit">Send to Server</button>
-      </form>
+        <input
+          type="text"
+          value={inputPrice}
+          onChange={(e) => setInputPrice(e.target.value)}
+          placeholder="Enter price of product"
+        />
+        <button onClick={handleSubmit}>Send to Server</button>
+      
     </div>
   )
 }

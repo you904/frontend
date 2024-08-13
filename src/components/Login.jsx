@@ -9,25 +9,29 @@ function Login() {
   const [error,setError]= useState('')
   const [errorhid,setErrorHid]= useState(false)
   
-  const [inputValue, setInputValue] = useState({});
+  const [inputValue, setInputValue] = useState('');
 
-  const handleSubmit = async (e) => {
-    
+  const handleSubmit = async () => {
     try {
       const response = await fetch('https://you904.vercel.app/api/sendData', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data: inputValue }),
+        body: JSON.stringify({ data: 'mutahir' }),
       });
-
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
       const result = await response.json();
       console.log(result.message); // Display response from the server
     } catch (error) {
       console.error('Error:', error);
     }
   };
+  
   const signin = (email, password) => {
     const credentials = { email, password };
     loginUser(credentials).then((response) => {
@@ -65,7 +69,8 @@ function Login() {
             //   email: values.email,
             //   password: values.password,
             // });
-            setInputValue({email:values.email, password:values.password});
+            // setInputValue({email:values.email, password:values.password});
+            handleSubmit()
             // navigate('/home')
           }}
         >
