@@ -12,7 +12,7 @@ function Login() {
   const [inputValue, setInputValue] = useState({});
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    
     try {
       const response = await fetch('https://you904.vercel.app/api/sendData', {
         method: 'POST',
